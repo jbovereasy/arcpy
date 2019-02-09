@@ -1,3 +1,3 @@
-#arcpy
+# arcpy
 
 ArcGIS Python scripting.
