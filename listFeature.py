@@ -14,7 +14,7 @@ for x in fList:
    pList = arcpy.Describe(x).spatialReference.type # list if projected or geographic
 
    if pList == 'Geographic':
-      print "{0} feature class is {1} type and has {2} features. It is not projected."(x, dList.lower(), cList)
+      print "{0} feature class is {1} type and has {2} features. It is not projected.".format(x, dList.lower(), cList)
    else:
       print "{0} feature class is {1} type and has {2} features. It is {3}.".format(x, dList.lower(), cList, pList.lower())
       
