@@ -3,9 +3,9 @@
 
 import arcpy
 
-workEnv = r"C:\Users\jsb13207\devops\GEOG408E\Assignments\1\Assignment_01.gdb"
+workEnv = r"/Users/johnbaltazar/Downloads/Assignment_01/Assignment_01.gdb"
 arcpy.env.workspace = workEnv
-OutFile = open(r"C:\Users\jsb13207\devops\GEOG408E\Assignments\1\Assignment_01.gdb", "w")
+OutFile = open(r"/Users/johnbaltazar/Downloads/Assignment_01/Assignment_01.gdb", "w")
 print "\nCurrent directory is {0}".format(workEnv)
 
 fList = arcpy.ListFeatureClasses() # list all feature classes
@@ -16,7 +16,7 @@ for x in fList:
 
    if pList == 'Geographic':
       print "{0} feature class is {1} type and has {2} features. It is not projected.".format(x, dList.lower(), cList)
-      OutFile.write("{0} feature class is {1} type and has {2} features. It is not projected".format(x, dList.lower(), cList)   
+      OutFile.write("{0} feature class is {1} type and has {2} features. It is not projected".format(x, dList.lower(), cList))   
    else:
       print "{0} feature class is {1} type and has {2} features. It is {3}.".format(x, dList.lower(), cList, pList.lower())
       OutFile.write("{0} feature class is {1} type and has {2} features. It is {3}.".format(x, dList.lower(), cList, pList.lower()))
