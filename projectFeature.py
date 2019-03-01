@@ -1,46 +1,46 @@
-#John Baltazar
-#Geog408D
 import arcpy
 
-#### Set environment #####
-arcpy.env.workspace = r"C:\Users\jsb13207\devops\GEOG408E\Week_05\Exercise_Data.gdb"
-print "\n" + arcpy.env.workspace
+arcpy.env.workspace = r".gdb"
+outFile = open(r".txt", "w")
+print "\n\n"
+fList = arcpy.ListFeatureClasses()
+fList.sort(reverse=False)
 
-#### Instead of for loop; just do one type = Businesses #####
-aFC = "Businesses"
+for x in fList:
+    desc = arcpy.Describe(x)
+    sList = desc.shapeType
+    cList = arcpy.GetCount_management(x)
+    pList = desc.spatialReference.type
+    rName = x+"_P"
+    if pList == 'Geographic':
+        if arcpy.Exists(rName):
+            arcpy.Delete_management(rName)
+            # print "Deleted a projected file"
+            # outFile.write("Deleted a projected file\n")
+        arcpy.Project_management(x, rName, arcpy.SpatialReference(26917))
+        chan = "not projected"
+        print "{0} feature class is {1} type and has {2} features. It is {3}. It has been projected to {4}.".format(x, sList.lower(), cList, chan, rName)
+        outFile.write("{0} feature class is {1} type and has {2} features. It is {3}. It has been projected to {4}.\n".format(x, sList.lower(), cList, chan, rName))
+    else:
+        print "{0} feature class is {1} type and has {2} features. It is {3}.".format(x, sList.lower(), cList, str(pList))
+        outFile.write("{0} feature class is {1} type and has {2} features. It is {3}.\n".format(x, sList.lower(), cList, str(pList)))
 
-#### Returns the number of feature in a feature class or rows in a table ####
-print arcpy.GetCount_management(aFC)
-
-#### since featuretype and shapetype needs describe. Avoid repetition #####
-aDesc = arcpy.Describe(aFC)
-print aDesc.featureType #Simple
-print aDesc.shapeType #Point
-
-#### CHECK THE REFERENCE NAME OF THE TYPE. EX GCS_Nor.._Am.._1983#####
-print aDesc.SpatialReference.name
-
-#### CURRENT SPATIAL REFERENCE: PROJECTED OR NAH #####
-print "Current type of " + aFC + " is " + aDesc.SpatialReference.type
-
-#### CHECK THE CODE OF THE REFERENCE #####
-print str(aDesc.SpatialReference.factoryCode)
-
-
-#### CHECK IF THE TYPE EXISTS; if not project it#####
-if arcpy.Exists("Businesess_P"):
-    print "Yes its derr"
-else:
-    arcpy.Project_management(aFC, "Businesess_P", arcpy.SpatialReference(26917))
+print "EOF\n"
 
 
-#### TO DELETE A TYPE AND PROJECT IT #####
-if arcpy.Exists("Businesess_P"):
-   arcpy.Delete_management("Businesses_P")
-   arcpy.Project_management(aFC, "Businesses_P", arcpy.SpatialReference(26917))
-   print "re-Projected"
-else:
-   print "failed projected"
+# #### Returns the number of feature in a feature class or rows in a table ####
+#print arcpy.GetCount_management(aFC)
 
-# Script end message
-print "End of the script!\n"   
+# #### since featuretype and shapetype needs describe. Avoid repetition #####
+# aDesc = arcpy.Describe(aFC)
+#print aDesc.featureType #Simple
+#print aDesc.shapeType #Point
+
+# #### CHECK THE REFERENCE NAME OF THE TYPE. EX GCS_Nor.._Am.._1983#####
+#print aDesc.SpatialReference.name
+
+# #### CURRENT SPATIAL REFERENCE: PROJECTED OR NAH #####
+#print "Current type of " + aFC + " is " + aDesc.SpatialReference.type
+
+# #### CHECK THE CODE OF THE REFERENCE #####
+#print str(aDesc.SpatialReference.factoryCode)
