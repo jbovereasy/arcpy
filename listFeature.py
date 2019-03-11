@@ -1,6 +1,3 @@
-#John Baltazar
-#GEOG408D
-
 import arcpy
 
 workEnv = r"C:\<filepath>"

@@ -1,6 +1,6 @@
 import arcpy
 
-arcpy.env.workspace = r".gdb"
+arcpy.env.workspace = r"C:\<filepath>"
 outFile = open(r".txt", "w")
 print "\n\n"
 fList = arcpy.ListFeatureClasses()
