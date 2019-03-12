@@ -11,11 +11,11 @@ with arcpy.da.UpdateCursor(aFC, "*") as aC:
             i[6] = ((i[2] - i[3]) / i[3]) * 100
             if i[6] < -3:
                 i[7] = "A"
-            if i[6] >= -3 and i[6] <= 0:
+            if i[6] >= -3 and i[6] < 0:
                 i[7] = "B"
             if i[6] == 0:
                 i[7] = "C"
-            if i[6] >= 0 and i[6] <= 3:
+            if i[6] > 0 and i[6] <= 3:
                 i[7] = "D"
             if i[6] > 3:
                 i[7] = "E"
@@ -28,4 +28,4 @@ print datetime.datetime.now()
 OF.write(str(datetime.datetime.now()))
 OF.close()
 
-print "\nEOF\n"
+print "EOF\n"
