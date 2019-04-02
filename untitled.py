@@ -1,4 +1,4 @@
-import arcpy, os
+import arcpy, datetime, os
 
 cGDB = r"\Assignment_04.gdb"
 nGDB = r"\PCS_Data.gdb"
@@ -23,10 +23,11 @@ def checkProjection():
        else:
            print "you goofed something"
 
-# def withConversion():
+# def withCursor():
 
 newGdb()
 checkProjection()
-# withConversion()
+# withCursor()
 
+print datetime.datetime.now()
 print "EOF!!!\n"

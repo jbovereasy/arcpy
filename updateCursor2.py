@@ -1,7 +1,7 @@
 import arcpy, datetime
 
 arcpy.env.workspace = r"C:\Users\jsb13207\devops\GEOG408E\Exam\Exam-03\Exam_3.gdb"
-OF = open(r"C:\Users\jsb13207\devops\GEOG408E\Exam\Exam-03\msg.txt", "w")
+OF = open(r"C:\Users\jsb13207\devops\GEOG408E\Exam\Exam-03\msg.txt)
 
 aFC = "LandParcels"
 aList = ["TaxVal06", "TaxVal00", "Per_Change"]
