@@ -13,12 +13,15 @@ def newGdb():
    arcpy.CreateFileGDB_management(aPath, nGDB)
 
 def checkProjection():
-   for i in arcpy.ListFeatureClasses():
-       desc = arcpy.Describe(i)
-       pList = desc.spatialReference.type
-       rName = aPath + nGDB + "\\" + i + "_P"
-       arcpy.Project_management(i, rName, arcpy.SpatialReference(26917))
-      
+    for i in arcpy.ListFeatureClasses():
+        desc = arcpy.Describe(i)
+        pList = desc.spatialReference.type
+        rName = aPath + nGDB + "\\" + i + "_P"
+        if pList == 'Geographic':
+            arcpy.Project_management(i, rName, arcpy.SpatialReference(26917))
+        else:
+            print "you goofed something"
+
 def newField():
     arcpy.AddField_management(aFC, "divIndex", "DOUBLE")
 
@@ -30,7 +33,6 @@ def calcIndex ():
             aC.updateRow(i)
     del i
     del aC
-
 
 newGdb()
 checkProjection()
