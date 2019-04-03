@@ -8,9 +8,9 @@ aFC = aPath + nGDB + r"\SFV_BG_P"
 print "starting"
 
 def newGdb():
-    # if arcpy.Exists(aPath + nGDB)
-    #     arcpy.Delete_management(aPath + nGDB)
-    arcpy.CreateFileGDB_management(aPath, nGDB)
+   if arcpy.Exists(aPath + nGDB):
+      arcpy.Delete_management(aPath + nGDB)
+   arcpy.CreateFileGDB_management(aPath, nGDB)
 
 def checkProjection():
    for i in arcpy.ListFeatureClasses():
