@@ -17,13 +17,8 @@ def checkProjection():
        desc = arcpy.Describe(i)
        pList = desc.spatialReference.type
        rName = aPath + nGDB + "\\" + i + "_P"
-       if pList == 'Geographic':
-           if arcpy.Exists(rName):
-               arcpy.Delete_management(rName)
-           arcpy.Project_management(i, rName, arcpy.SpatialReference(26917))
-       else:
-           print "you goofed something"
-
+       arcpy.Project_management(i, rName, arcpy.SpatialReference(26917))
+      
 def newField():
     arcpy.AddField_management(aFC, "divIndex", "DOUBLE")
 
